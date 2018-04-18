@@ -127,6 +127,21 @@ class AlexaRouter extends IlluminateRouter
 
 
     /**
+     * @param string                     $uri
+     * @param string                     $event
+     * @param \Closure|array|string|null $action
+     *
+     * @return $this
+     */
+    public function playbackController($uri, $event, $action)
+    {
+        $this->intentRoutes[] = $uri;
+        $this->addAlexaRoute('POST', $this->prefix($uri), 'PlaybackController.' . $event, $action);
+
+        return $this;
+    }
+
+    /**
      * Add a route to the underlying route collection.
      *
      * @param array|string               $methods
