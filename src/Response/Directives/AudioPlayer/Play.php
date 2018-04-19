@@ -177,7 +177,7 @@ class Play extends Directive
      * @param int $height
      * @return $this
      */
-    public function setMetadataArtSourcesUrl($url,$width = 0,$height = 0)
+    public function setMetadataArtSourcesImage($url,$width = 0,$height = 0)
     {
         $image['url'] = $url;
 
