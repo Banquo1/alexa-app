@@ -177,7 +177,7 @@ class Play extends Directive
      * @param int $height
      * @return $this
      */
-    public function setMetadataArtSourcesImage($url,$width = 0,$height = 0)
+    public function addMetadataArtImage($url,$width = 0,$height = 0)
     {
         $image['url'] = $url;
 
@@ -198,7 +198,7 @@ class Play extends Directive
      * @param int $height
      * @return $this
      */
-    public function setBackgroundImage($url,$width = 0,$height = 0)
+    public function addBackgroundImage($url,$width = 0,$height = 0)
     {
         $image['url'] = $url;
 
@@ -274,19 +274,19 @@ class Play extends Directive
     }
 
     /**
-     * @return string|null
+     * @return string|array
      */
-    public function getMetadataArtSourcesUrl()
+    public function getMetadataArtSources()
     {
-        return isset($this->metadata['art']['sources']['url'] ) ? $this->metadata['art']['sources']['url'] : null;
+        return isset($this->metadata['art']['sources']['url'] ) ? $this->metadata['art']['sources']['url'] : [];
     }
 
     /**
-     * @return string|null
+     * @return string|array
      */
-    public function getBackgroundImageSourceUrl()
+    public function getBackgroundImageSources()
     {
-        return isset($this->backgroundImage['sources']['url'] ) ? $this->backgroundImage['sources']['url'] : null;
+        return isset($this->backgroundImage['sources']) ? $this->backgroundImage['sources'] : [];
     }
 
 }
