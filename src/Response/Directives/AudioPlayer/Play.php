@@ -22,6 +22,10 @@ class Play extends Directive
 
     protected $expectedPreviousToken = '';
 
+    protected $metadata = [];
+
+    protected $backgroundImage = [];
+
 
     /**
      * Play constructor.
@@ -29,7 +33,6 @@ class Play extends Directive
      * @param string $url
      * @param string $token
      * @param string $playBehavior
-     * @param int $offset
      * @param string $expectedPreviousToken
      */
     public function __construct($url, $token = '', $offsetInMilliseconds = 0, $playBehavior = null, $expectedPreviousToken = '')
@@ -59,6 +62,16 @@ class Play extends Directive
         if($this->playBehavior == 'ENQUEUE')
         {
             $this->addAttributeToArray('expectedPreviousToken', $playAsArray['audioItem']['stream']);
+        }
+
+        if(is_array($this->metadata) && count($this->metadata))
+        {
+            $playAsArray['metadata'] = $this->metadata;
+        }
+
+        if(is_array($this->backgroundImage) && count($this->backgroundImage))
+        {
+            $playAsArray['backgroundImage'] = $this->backgroundImage;
         }
 
         return $playAsArray;
@@ -103,11 +116,9 @@ class Play extends Directive
     }
 
     /**
-     * @param string $type
-     *
-     * @throws \Exception
-     *
+     * @param $playBehavior
      * @return $this
+     * @throws \Exception
      */
     public function setPlayBehavior($playBehavior)
     {
@@ -121,9 +132,9 @@ class Play extends Directive
     }
 
     /**
-     * @param string $token
-     *
+     * @param $expectedPreviousToken
      * @return $this
+     * @throws \Exception
      */
     public function setExpectedPreviousToken($expectedPreviousToken)
     {
@@ -135,6 +146,52 @@ class Play extends Directive
 
         return $this;
     }
+
+
+    /**
+     * @param $title
+     * @return $this
+     */
+    public function setMetadataTitle($title)
+    {
+        $this->metadata['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * @param $subtitle
+     * @return $this
+     */
+    public function setMetadataSubtitle($subtitle)
+    {
+        $this->metadata['subtitle'] = $subtitle;
+
+        return $this;
+    }
+
+
+    /**
+     * @param $url
+     * @return $this
+     */
+    public function setMetadataArtSourcesUrl($url)
+    {
+        $this->metadata['art']['sources']['url'] = $url;
+
+        return $this;
+    }
+
+
+    public function setBackgroundImageSourceUrl($url)
+    {
+        $this->backgroundImage['sources']['url'] = $url;
+
+        return $this;
+    }
+
+
+
 
     /**
      * @return string
@@ -175,4 +232,38 @@ class Play extends Directive
     {
         return $this->expectedPreviousToken;
     }
+
+
+    /**
+     * @return mixed|null
+     */
+    public function getMetadataTitle()
+    {
+        return isset($this->metadata['title']) ? $this->metadata['title']: null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMetadataSubtitle()
+    {
+        return isset($this->metadata['subtitle']) ? $this->metadata['subtitle']: null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMetadataArtSourcesUrl()
+    {
+        return isset($this->metadata['art']['sources']['url'] ) ? $this->metadata['art']['sources']['url'] : null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBackgroundImageSourceUrl()
+    {
+        return isset($this->backgroundImage['sources']['url'] ) ? $this->backgroundImage['sources']['url'] : null;
+    }
+
 }

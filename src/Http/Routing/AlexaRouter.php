@@ -127,6 +127,8 @@ class AlexaRouter extends IlluminateRouter
 
 
     /**
+     * For touch Events
+     *
      * @param string                     $uri
      * @param string                     $event
      * @param \Closure|array|string|null $action
