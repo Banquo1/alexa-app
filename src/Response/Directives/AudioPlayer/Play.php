@@ -198,7 +198,7 @@ class Play extends Directive
      * @param int $height
      * @return $this
      */
-    public function setBackgroundImageSourceImage($url,$width = 0,$height = 0)
+    public function setBackgroundImage($url,$width = 0,$height = 0)
     {
         $image['url'] = $url;
 
