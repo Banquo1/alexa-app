@@ -192,10 +192,23 @@ class Play extends Directive
         return $this;
     }
 
-
-    public function setBackgroundImageSourceUrl($url)
+    /**
+     * @param $url
+     * @param int $width
+     * @param int $height
+     * @return $this
+     */
+    public function setBackgroundImageSourceImage($url,$width = 0,$height = 0)
     {
-        $this->backgroundImage['sources']['url'] = $url;
+        $image['url'] = $url;
+
+        if ($width && $height)
+        {
+            $image['width'] = $width;
+            $image['height'] = $height;
+        }
+
+        $this->backgroundImage['sources'][] = $image;
 
         return $this;
     }
