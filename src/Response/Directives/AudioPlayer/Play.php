@@ -66,12 +66,12 @@ class Play extends Directive
 
         if(is_array($this->metadata) && count($this->metadata))
         {
-            $playAsArray['metadata'] = $this->metadata;
+            $playAsArray['audioItem']['metadata'] = $this->metadata;
         }
 
         if(is_array($this->backgroundImage) && count($this->backgroundImage))
         {
-            $playAsArray['backgroundImage'] = $this->backgroundImage;
+            $playAsArray['audioItem']['backgroundImage'] = $this->backgroundImage;
         }
 
         return $playAsArray;
